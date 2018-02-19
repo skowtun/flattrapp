@@ -21,6 +21,16 @@ $ open http://myflattrpodcast.sergejkowtun.de
 ### URLs
 
 You can reach the project over the following url http://myflattrpodcast.sergejkowtun.de
+Please note!!! If you reach the "flattr.com" page via the authorization button to authorize the "myFlattrPodcast" app, 
+you have to change the protocol from https:// to http://, otherwise you will get an "invalid csrf token" "Error and you can not authorize the app.
+
+Example:
+
+SSL-URL
+**(https://flattr.com/oauth/authorize?client_id=vlp51YdLZfHzaVbrVXOOlo9zV4vZyeMl&response_type=code&redirect_uri=http://myflattrpodcast.sergejkowtun.de/dashboard.html&scope=flattr)**
+
+Please use this one
+**(http://flattr.com/oauth/authorize?client_id=vlp51YdLZfHzaVbrVXOOlo9zV4vZyeMl&response_type=code&redirect_uri=http://myflattrpodcast.sergejkowtun.de/dashboard.html&scope=flattr)** 
 
 ### SSL
 
