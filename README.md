@@ -38,6 +38,11 @@ Sorry!! I have no SSL-Certificate for the domain myflattrpodcast.sergejkowtun.de
 therefore url must be called via the insecure http protocol.
 
 
+### Breakpoints
+
+The app was designed as a mobile first and that adds to the larger display sizes. Not all display sizes were considered and was primarily focused on "mobile first". Therefore, if the app is called in the browser, it would be advisable to turn on the mobile user-Agrent.
+
+
 <a name="installation"></a>
 # Installation
 
