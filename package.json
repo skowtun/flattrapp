@@ -1,0 +1,17 @@
+{
+  "name": "myflattrapp",
+  "version": "1.0.0",
+  "description": "simple web service that flattrs podcasts",
+  "main": "./scripts/main.js",
+  "scripts": {
+    "build-css": "node-sass --include-path scss scss/main.scss   public/css/main.css",
+    "watch-css": "nodemon -e scss -x \"npm run build-css\""
+  },
+  "author": "Sergej Kowtun <s.kowtun@gmx.de>",
+  "license": "MIT",
+  "devDependencies": {
+    "concat": "^1.0.3",
+    "node-sass": "^4.7.2",
+    "nodemon": "^1.15.0"
+  }
+}

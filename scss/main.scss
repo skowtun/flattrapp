@@ -1,0 +1,16 @@
+//
+// main.scss
+//
+// CSS Styleguide:
+//  - Use double-slash (//) for comments
+//  - Use slash-asterisk (/*) for adaption instructions only
+//  - Do not nest sass deeper than 4 levels
+//  - CSS attributes should (largely) follow the order described here:
+//      https://css-tricks.com/poll-results-how-do-you-order-your-css-properties/
+// --------------------------------------------------
+
+@charset 'UTF-8';
+
+@import 'normalize';
+@import 'globals';
+@import 'layout';

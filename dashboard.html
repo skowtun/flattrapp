@@ -1,0 +1,79 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+ 
+    <!-- CSS -->
+    <link rel="stylesheet" href="public/css/main.css">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto+Condensed">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Poppins">
+    
+    <!-- SCRIPTS -->
+    <script id="script_jquery" src="public/js/vendor/jquery-3.3.1.min.js" type="text/javascript"></script>
+    <script id="script_bootstrap" src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
+    <script id="script_main" src="public/js/main.js" type="text/javascript"></script>
+    
+    <title>myFlattr - simple web service that flattrs podcasts</title>
+  </head>
+  <body>
+    <div data-handler="PreLoad" id="top" tabindex="-1" style="outline: none;"></div>
+    
+    <!-- header -->
+    <header class="main-header block active">
+      <div class="container--header">
+        <div class="header__head" role="navigation">
+          <div class="logo">
+            <h1>
+              <a href="/" title="← Back to the homepage">myFlattrPodcast</a>
+            </h1>
+          </div>
+
+          <div class="search-topics container--header" id="header-search-topics">
+            <div class="header__search">
+              <form id="js-search-form" class="search-form">
+                <label for="js-search-input"></label>
+                <div class="search-input-wrapper">
+                  <input type="text" id="js-search-input" placeholder="Search Podcast...">
+                </div>
+                <input type="submit" name="submit" value="Search" class="btn" id="js-search-submit">
+              </form>
+            </div>
+          </div>
+        </div>
+      </div>
+    </header>
+    
+    <!-- main -->
+    <main id="main">
+      <div class="podcasts-container">
+        <!-- is filled from the json feed -->
+      </div>
+    </main>
+
+    <!-- footer -->
+    <footer class="site-footer">
+      <div class="container-fluid">
+        <div class="col-12">
+          <div class="footer__notes">
+            <p class="footer--logo">myFlattrPodcast</p>
+            <p>Developed by Sergej Kowtun <span class="lining-figures">&copy;2018</span>.</p>
+          </div>
+        </div>
+        <div class="back-to-top-wrapper" id="back_top">
+          <a href="#top" data-scroll="#top" class="back-to-top" title="Back to top">
+            <svg viewBox="0 0 100 100" width="25px" height="25px" tabindex="-1" role="img" aria-labelledby="title">
+              <title id="title">Back to top</title>
+              <path d="M 10,50 L 60,100 L 70,90 L 30,50  L 70,10 L 60,0 Z" transform="translate(0 0) rotate(90 50 50)" fill="#fff" stroke="#fff"></path>
+              <image src="public/img/back-to-top-arrow.png" alt="Back to top arrow" xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="" width="100%" height="100%"></image>
+            </svg>
+          </a>
+        </div>
+      </div>
+    </footer>
+  </body>
+</html>
