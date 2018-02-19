@@ -29,37 +29,80 @@ $(document).ready(function() {
  */
 app.flattr.getPodcasts = function() {
   
-  $('#js-search-submit').click(function() {  
+  $('#js-search-submit').click(function(e) {  
+    
+    //not trigger default event
+    e.preventDefault();
+    
     var searchkeyword = $('#js-search-input').val();
-    var dom;
+    var pitem, heading;
+    
     $.ajax({
       url: 'https://itunes.apple.com/search?term=' + searchkeyword + '&entity=podcast', 
       success: function(result) {
+        
+        //parse json
         var obj = $.parseJSON(result);
-        console.log(obj.resultCount);
         
-        // clear list
-        $( '.podcasts-container' ).empty();
+        // check if result have matches
+        if(obj.resultCount > 0) {
         
-        //go through the results
-        for (var i in obj.results) {
+          // clear list
+          $( '.podcasts-container' ).empty();
           
-          // create podcast item
-          dom =  '<h1 class="podcasts-result__count">';
-          dom += '<span>You searched for ' + searchkeyword + '</br>here is your result</span>';
-          dom += '</h1>';
-          dom += '<div class="podcast-result-item col-sm"><div class="row">';
-          dom += '<div class="podcast-image col-sm-4"><img src="'+ obj.results[i].artworkUrl100 +'"/></div>';
-          dom += '<div class="podcast-meta-data col-sm-8">';
-          dom += '<div class="podcast-meta-data-upper">' + obj.results[i].kind + '</div>';
-          dom += '<div class="podcast-meta-data-title">' + obj.results[i].trackName + '</div>';
-          dom += '</div>'; //close podcast-meta-data
-          dom += '<div class="podcast-offer">';
-          dom += '<button type="button" onclick="app.flattr.sendPodcastToFlattr(\'' + obj.results[i].trackViewUrl + '\');" class="btn btn-secondary btn-block send-to-flattr">Send to flattr</button>';
-          dom += '</div>'; //close podcast-offer
-          dom += '</div></div>'; // close podcast-result-item 
-          $( '.podcasts-container' ).append( dom );
-        }
+          // remove message if allready exist
+          $('.search-input-wrapper label').detach();
+          
+          // create heading
+          heading =  '<h1 class="podcasts-result__heading">';
+          heading += '<span>' + 'You searched for ' + '"' + searchkeyword.toUpperCase() + '"' + '</span>';
+          heading += '<span>here is your result</span>';
+          heading += '</h1>'; 
+          
+          // add to DOM
+          $( '.podcasts-container' ).prepend( heading );
+          
+          //go through the results
+          for (var i in obj.results) {
+            
+            // create podcast item
+            pitem =  '<article class="podcast-item">';
+            pitem += '<div class="nowrap">';
+            pitem += '<figure class="artwork artwork--white artwork--small">';
+            pitem += '<div class="artwork__image-wrapper">';
+            pitem += '<div class="artwork__image"><img src="'+ obj.results[i].artworkUrl100 +'"/></div>';
+            pitem += '</div>';
+            pitem += '</figure>'; // close figure
+            pitem += '<p class="podcast-item__genre">';
+            pitem += '<span class="genre">Genre</span>';
+            pitem += '<span class="genre__name">' + obj.results[i].primaryGenreName + '</span>';
+            pitem += '</p>';
+            pitem += '</div>'; // close nowrap
+            pitem += '<h2 class="podcast-item__title">';
+            pitem += '<a target="_blank" href="' + obj.results[i].trackViewUrl + '">' + obj.results[i].trackName + '</a>';
+            pitem += '</h2>';
+            pitem += '<ul class="podcast-item__tags">';
+            pitem += '<li><span>Release date</span>' + obj.results[i].releaseDate.substring(0,10) + '</li>';
+            pitem += '<li><span>County</span>' + obj.results[i].country + '</li>';
+            pitem += '<li><span>Price</span>' + obj.results[i].trackPrice + ' ' + obj.results[i].currency + '</li>';
+            pitem += '</ul>';
+            pitem += '<button type="button" onclick="app.flattr.sendPodcastToFlattr(\'' + obj.results[i].trackViewUrl + '\');" class="send-to-flattr">Send to flattr</button>';
+            pitem += '</article>';
+            $( '.podcasts-container' ).append( pitem );
+          }
+        
+        } else {
+          
+          // clear list
+          $( '.podcasts-container' ).empty();
+          
+          // remove message if allready exist
+          $('.search-input-wrapper label').detach();
+          
+          // show message if the user has not entered a search word
+          $('.search-input-wrapper').prepend('<label><span>No hits were found.</span><span>Please enter a different search term.</span></label>');
+        } 
+        
     }});
   });
 }
@@ -71,7 +114,7 @@ app.flattr.getPodcasts = function() {
 app.flattr.sendPodcastToFlattr = function(trackViewUrl) {
   
   jQuery.ajax ({
-    url: 'https://api.flattr.com/rest/v2/flattr/bulk',
+    url:  'https://api.flattr.com/rest/v2/flattr/bulk',
     type: 'POST',
     data: JSON.stringify({url:trackViewUrl}),
     dataType: 'json',
