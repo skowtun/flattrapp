@@ -444,6 +444,8 @@ figure {
     .container-header__auth .podcasts-result__heading span {
       background-color: #f6f4f7;
       color: #d33a2c; }
+  .container-header__auth form p {
+    text-align: center; }
 
 .podcast-item {
   width: 100%;
